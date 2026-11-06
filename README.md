@@ -1,8 +1,8 @@
-# Rakib Info — Kamrul Hassan Rakib Portfolio
+# Rakib Info Portfolio
 
-## Live website
+**Live Website:** [https://sufathasan.github.io/rakib-info/](https://sufathasan.github.io/rakib-info/)
 
-[Open Kamrul Hassan Rakib’s portfolio](https://sufathasan.github.io/rakib-info/)
+**GitHub Repository:** [https://github.com/Sufathasan/rakib-info](https://github.com/Sufathasan/rakib-info)
 
 A responsive editorial portfolio for graphic designer and branding specialist Kamrul Hassan Rakib. Built as a static website with HTML, CSS, and vanilla JavaScript; there is no build step or package dependency.
 
