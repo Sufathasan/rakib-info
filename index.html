@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f3eee5">
+    <meta name="theme-color" content="#f3eee5" id="theme-color-meta">
     <meta name="author" content="Kamrul Hassan Rakib">
     <meta name="description" content="Explore the portfolio of Kamrul Hassan Rakib, a graphic designer and branding specialist based in Dhaka, Bangladesh. Discover brand identities, logos, packaging designs, and creative projects.">
     <meta property="og:type" content="website">
@@ -16,119 +16,150 @@
     <title>Kamrul Hassan Rakib | Graphic Designer &amp; Branding Specialist</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("rakib-info-theme");
+        if (savedTheme === "dark") document.documentElement.dataset.theme = "dark";
+      } catch (error) {
+        console.error("Could not read the saved theme preference.", error);
+        document.documentElement.dataset.theme = "light";
+      }
+    </script>
+    <script src="translations.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
     <header class="site-header" id="top">
-      <a class="wordmark" href="#home" aria-label="Kamrul Rakib, home">
+      <a class="wordmark" href="#home" aria-label="Kamrul Rakib, home" data-i18n-aria="wordmarkHome">
         <span class="wordmark-monogram">KR</span>
         <span class="wordmark-name">Kamrul<br>Rakib</span>
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation">
         <span></span><span></span>
       </button>
-      <nav class="primary-navigation" id="primary-navigation" aria-label="Main navigation">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#expertise">Expertise</a>
-        <a href="#work">Portfolio</a>
-        <a href="#contact">Contact</a>
-        <a class="nav-cta" href="https://www.behance.net/kamrulhassanrakib" target="_blank" rel="noopener noreferrer">Let’s talk <span aria-hidden="true">↗</span></a>
+      <nav class="primary-navigation" id="primary-navigation" aria-label="Main navigation" data-i18n-aria="mainNavigation">
+        <a href="#home" data-i18n="navHome">Home</a>
+        <a href="#about" data-i18n="navAbout">About</a>
+        <a href="#expertise" data-i18n="navExpertise">Expertise</a>
+        <a href="#work" data-i18n="navPortfolio">Portfolio</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+        <a class="nav-cta" href="https://www.behance.net/kamrulhassanrakib" target="_blank" rel="noopener noreferrer"><span data-i18n="navCta">Let’s talk</span> <span aria-hidden="true">↗</span></a>
+        <div class="nav-controls">
+          <label class="language-control">
+            <span class="visually-hidden" data-i18n="languageLabel">Language</span>
+            <select id="language-selector" aria-label="Select language" data-i18n-aria="languageLabel">
+              <option value="en">English</option>
+              <option value="bn">বাংলা</option>
+              <option value="zh-CN">中文（简体）</option>
+              <option value="zh-TW">繁體中文</option>
+              <option value="hi">हिन्दी</option>
+              <option value="ar">العربية</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="ja">日本語</option>
+              <option value="pt">Português</option>
+            </select>
+          </label>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" data-i18n-aria="themeToDark">
+            <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>
+            <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"></path></svg>
+          </button>
+        </div>
       </nav>
     </header>
 
     <main id="main">
       <section class="hero section-shell" id="home" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="eyebrow-line"></span> Graphic design &amp; visual identity <span class="eyebrow-dot"></span> Dhaka, Bangladesh</p>
+          <p class="eyebrow" data-i18n-html="heroEyebrow"><span class="eyebrow-line"></span> Graphic design &amp; visual identity <span class="eyebrow-dot"></span> Dhaka, Bangladesh</p>
           <h1 id="hero-title"><span>Kamrul</span><span class="hero-name-middle">Hassan</span><span class="hero-name-last">Rakib<span class="period">.</span></span></h1>
           <div class="hero-bottom">
-            <p class="hero-role">Graphic designer<br>&amp; branding specialist</p>
-            <p class="hero-intro">Thoughtful identities, distinctive visuals, and memorable brand experiences.</p>
+            <p class="hero-role" data-i18n-html="heroRole">Graphic designer<br>&amp; branding specialist</p>
+            <p class="hero-intro" data-i18n="heroIntro">Thoughtful identities, distinctive visuals, and memorable brand experiences.</p>
           </div>
           <div class="hero-actions">
-            <a class="button button-dark" href="#work">View selected works <span aria-hidden="true">↘</span></a>
-            <a class="text-link" href="https://www.behance.net/kamrulhassanrakib" target="_blank" rel="noopener noreferrer">Let’s connect <span aria-hidden="true">↗</span></a>
+            <a class="button button-dark" href="#work"><span data-i18n="viewWorks">View selected works</span> <span aria-hidden="true">↘</span></a>
+            <a class="text-link" href="https://www.behance.net/kamrulhassanrakib" target="_blank" rel="noopener noreferrer"><span data-i18n="letsConnect">Let’s connect</span> <span aria-hidden="true">↗</span></a>
           </div>
-          <span class="hero-index" aria-hidden="true">Portfolio / 2026</span>
+          <span class="hero-index" aria-hidden="true" data-i18n="heroIndex">Portfolio / 2026</span>
         </div>
-        <div class="hero-art" aria-label="Portrait and editorial artwork">
+        <div class="hero-art" aria-label="Portrait and editorial artwork" data-i18n-aria="heroArtLabel">
           <div class="portrait-frame">
-            <img class="portrait-image" src="assets/images/profile/kamrul-hassan-rakib.jpg" alt="Portrait of Kamrul Hassan Rakib" fetchpriority="high" decoding="async">
+            <img class="portrait-image" src="assets/images/profile/kamrul-hassan-rakib.jpg" alt="Portrait of Kamrul Hassan Rakib" data-i18n-alt="portraitAlt" fetchpriority="high" decoding="async">
             <div class="portrait-fallback" aria-hidden="true">
               <img src="assets/images/profile/portrait-placeholder.svg" alt="">
             </div>
-            <span class="portrait-caption">A practice built around<br>curiosity &amp; craft</span>
+            <span class="portrait-caption" data-i18n-html="portraitCaption">A practice built around<br>curiosity &amp; craft</span>
           </div>
-          <span class="hero-stamp" aria-hidden="true"><span>Ideas</span><span>in good</span><span>company</span><b>✳</b></span>
-          <span class="hero-vertical-note" aria-hidden="true">Visual identity — packaging — print</span>
+          <span class="hero-stamp" aria-hidden="true" data-i18n-html="heroStamp"><span>Ideas</span><span>in good</span><span>company</span><b>✳</b></span>
+          <span class="hero-vertical-note" aria-hidden="true" data-i18n="heroVerticalNote">Visual identity — packaging — print</span>
           <span class="hero-orbit" aria-hidden="true"></span>
         </div>
-        <a class="scroll-cue" href="#about"><span>Scroll to discover</span><i aria-hidden="true">↓</i></a>
+        <a class="scroll-cue" href="#about"><span data-i18n="scrollCue">Scroll to discover</span><i aria-hidden="true">↓</i></a>
       </section>
 
-      <section class="intro-band" aria-label="Areas of practice">
-        <p>Identity</p><span aria-hidden="true">✳</span><p>Packaging</p><span aria-hidden="true">✳</span><p>Print</p><span aria-hidden="true">✳</span><p>Digital</p>
+      <section class="intro-band" aria-label="Areas of practice" data-i18n-aria="practiceAreas">
+        <p data-i18n="practiceIdentity">Identity</p><span aria-hidden="true">✳</span><p data-i18n="practicePackaging">Packaging</p><span aria-hidden="true">✳</span><p data-i18n="practicePrint">Print</p><span aria-hidden="true">✳</span><p data-i18n="practiceDigital">Digital</p>
       </section>
 
       <section class="about section-shell section-space" id="about" aria-labelledby="about-title">
-        <div class="section-kicker"><span>01 / The designer</span><span class="kicker-rule"></span><span>Dhaka, Bangladesh</span></div>
+        <div class="section-kicker"><span data-i18n="aboutKicker">01 / The designer</span><span class="kicker-rule"></span><span>Dhaka, Bangladesh</span></div>
         <div class="about-layout">
           <div class="about-heading">
-            <p class="eyebrow">A little about me</p>
-            <h2 id="about-title">Design with<br><em>intention.</em></h2>
-            <div class="about-seal" aria-hidden="true"><span>Made with care</span><b>✳</b><span>Since always</span></div>
+            <p class="eyebrow" data-i18n="aboutEyebrow">A little about me</p>
+            <h2 id="about-title" data-i18n-html="aboutTitle">Design with<br><em>intention.</em></h2>
+            <div class="about-seal" aria-hidden="true" data-i18n-html="aboutSeal"><span>Made with care</span><b>✳</b><span>Since always</span></div>
           </div>
           <div class="about-copy">
-            <p class="about-lede">I’m Kamrul Hassan Rakib, a graphic designer and branding specialist based in Dhaka, Bangladesh.</p>
-            <p>My portfolio brings together work across brand identity, logo design, packaging, product labels, and visual communication. I use Adobe Photoshop, Adobe Illustrator, Figma, and Canva to shape ideas into clear, considered visual expressions.</p>
-            <div class="about-signoff"><span class="signature">Kamrul Rakib</span><span>Graphic designer<br>&amp; branding specialist</span></div>
+            <p class="about-lede" data-i18n="aboutLede">I’m Kamrul Hassan Rakib, a graphic designer and branding specialist based in Dhaka, Bangladesh.</p>
+            <p data-i18n="aboutCopy">My portfolio brings together work across brand identity, logo design, packaging, product labels, and visual communication. I use Adobe Photoshop, Adobe Illustrator, Figma, and Canva to shape ideas into clear, considered visual expressions.</p>
+            <div class="about-signoff"><span class="signature">Kamrul Rakib</span><span data-i18n-html="heroRole">Graphic designer<br>&amp; branding specialist</span></div>
           </div>
         </div>
       </section>
 
       <section class="expertise section-shell section-space" id="expertise" aria-labelledby="expertise-title">
-        <div class="section-kicker"><span>02 / What I do</span><span class="kicker-rule"></span><span>Selected disciplines</span></div>
+        <div class="section-kicker"><span data-i18n="expertiseKicker">02 / What I do</span><span class="kicker-rule"></span><span data-i18n="expertiseKickerEnd">Selected disciplines</span></div>
         <div class="section-heading-row">
-          <div><p class="eyebrow">Ideas into identity</p><h2 id="expertise-title">A thoughtful<br><em>visual language.</em></h2></div>
-          <p class="section-aside">A selection of the design categories represented throughout the portfolio.</p>
+          <div><p class="eyebrow" data-i18n="expertiseEyebrow">Ideas into identity</p><h2 id="expertise-title" data-i18n-html="expertiseTitle">A thoughtful<br><em>visual language.</em></h2></div>
+          <p class="section-aside" data-i18n="expertiseAside">A selection of the design categories represented throughout the portfolio.</p>
         </div>
         <div class="service-list">
-          <article class="service-item"><span class="service-number">01</span><h3>Brand identity design</h3><span class="service-mark" aria-hidden="true">↗</span></article>
-          <article class="service-item"><span class="service-number">02</span><h3>Logo design</h3><span class="service-mark" aria-hidden="true">↗</span></article>
-          <article class="service-item"><span class="service-number">03</span><h3>Packaging design</h3><span class="service-mark" aria-hidden="true">↗</span></article>
-          <article class="service-item"><span class="service-number">04</span><h3>Visual identity</h3><span class="service-mark" aria-hidden="true">↗</span></article>
-          <article class="service-item"><span class="service-number">05</span><h3>Product label design</h3><span class="service-mark" aria-hidden="true">↗</span></article>
-          <article class="service-item"><span class="service-number">06</span><h3>Print &amp; digital design</h3><span class="service-mark" aria-hidden="true">↗</span></article>
+          <article class="service-item"><span class="service-number">01</span><h3 data-i18n="serviceBrand">Brand identity design</h3><span class="service-mark" aria-hidden="true">↗</span></article>
+          <article class="service-item"><span class="service-number">02</span><h3 data-i18n="serviceLogo">Logo design</h3><span class="service-mark" aria-hidden="true">↗</span></article>
+          <article class="service-item"><span class="service-number">03</span><h3 data-i18n="servicePackaging">Packaging design</h3><span class="service-mark" aria-hidden="true">↗</span></article>
+          <article class="service-item"><span class="service-number">04</span><h3 data-i18n="serviceVisual">Visual identity</h3><span class="service-mark" aria-hidden="true">↗</span></article>
+          <article class="service-item"><span class="service-number">05</span><h3 data-i18n="serviceLabel">Product label design</h3><span class="service-mark" aria-hidden="true">↗</span></article>
+          <article class="service-item"><span class="service-number">06</span><h3 data-i18n="servicePrint">Print &amp; digital design</h3><span class="service-mark" aria-hidden="true">↗</span></article>
         </div>
       </section>
 
       <section class="work-section section-space" id="work" aria-labelledby="work-title">
         <div class="section-shell">
-          <div class="section-kicker"><span>03 / Selected works</span><span class="kicker-rule"></span><span>A collection of visual ideas</span></div>
+          <div class="section-kicker"><span data-i18n="workKicker">03 / Selected works</span><span class="kicker-rule"></span><span data-i18n="workKickerEnd">A collection of visual ideas</span></div>
           <div class="section-heading-row work-heading">
-            <div><p class="eyebrow">The portfolio</p><h2 id="work-title">Made to be<br><em>remembered.</em></h2></div>
-            <p class="section-aside">A collection of visual identities, packaging concepts, and creative design projects.</p>
+            <div><p class="eyebrow" data-i18n="workEyebrow">The portfolio</p><h2 id="work-title" data-i18n-html="workTitle">Made to be<br><em>remembered.</em></h2></div>
+            <p class="section-aside" data-i18n="workAside">A collection of visual identities, packaging concepts, and creative design projects.</p>
           </div>
           <div class="work-toolbar">
-            <div class="filters" role="group" aria-label="Filter portfolio projects">
-              <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All works</button>
-              <button class="filter-button" type="button" data-filter="brand" aria-pressed="false">Brand identity</button>
-              <button class="filter-button" type="button" data-filter="packaging" aria-pressed="false">Packaging</button>
-              <button class="filter-button" type="button" data-filter="other" aria-pressed="false">Other design</button>
+            <div class="filters" role="group" aria-label="Filter portfolio projects" data-i18n-aria="filterLabel">
+              <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true" data-i18n="filterAll">All works</button>
+              <button class="filter-button" type="button" data-filter="brand" aria-pressed="false" data-i18n="categoryBrand">Brand identity</button>
+              <button class="filter-button" type="button" data-filter="packaging" aria-pressed="false" data-i18n="categoryPackaging">Packaging</button>
+              <button class="filter-button" type="button" data-filter="other" aria-pressed="false" data-i18n="categoryOther">Other design</button>
             </div>
-            <p class="project-count" aria-live="polite"><span id="visible-count">28</span> projects</p>
+            <p class="project-count" aria-live="polite"><span id="visible-count">28</span> <span data-i18n="projectCount">projects</span></p>
           </div>
           <div class="project-grid" id="project-grid" aria-live="polite"></div>
         </div>
       </section>
 
       <section class="tools-section section-shell section-space" aria-labelledby="tools-title">
-        <div class="section-kicker"><span>04 / Tools of my craft</span><span class="kicker-rule"></span><span>Creative toolkit</span></div>
+        <div class="section-kicker"><span data-i18n="toolsKicker">04 / Tools of my craft</span><span class="kicker-rule"></span><span data-i18n="toolsKickerEnd">Creative toolkit</span></div>
         <div class="tools-layout">
-          <div><p class="eyebrow">The everyday essentials</p><h2 id="tools-title">Ideas take<br><em>many forms.</em></h2></div>
-          <div class="tool-list" aria-label="Design tools">
+          <div><p class="eyebrow" data-i18n="toolsEyebrow">The everyday essentials</p><h2 id="tools-title" data-i18n-html="toolsTitle">Ideas take<br><em>many forms.</em></h2></div>
+          <div class="tool-list" aria-label="Design tools" data-i18n-aria="designTools">
             <div class="tool-item"><span class="tool-monogram photoshop">Ps</span><span>Adobe Photoshop</span><span class="tool-arrow" aria-hidden="true">↗</span></div>
             <div class="tool-item"><span class="tool-monogram illustrator">Ai</span><span>Adobe Illustrator</span><span class="tool-arrow" aria-hidden="true">↗</span></div>
             <div class="tool-item"><span class="tool-monogram figma">F</span><span>Figma</span><span class="tool-arrow" aria-hidden="true">↗</span></div>
@@ -138,16 +169,16 @@
       </section>
 
       <section class="connect-section section-shell section-space" id="contact" aria-labelledby="contact-title">
-        <div class="section-kicker"><span>05 / Let’s connect</span><span class="kicker-rule"></span><span>Open doors, good ideas</span></div>
+        <div class="section-kicker"><span data-i18n="contactKicker">05 / Let’s connect</span><span class="kicker-rule"></span><span data-i18n="contactKickerEnd">Open doors, good ideas</span></div>
         <div class="connect-panel">
           <span class="connect-sun" aria-hidden="true">✳</span>
-          <p class="eyebrow">A note to begin</p>
-          <h2 id="contact-title">Have a creative<br>project in <em>mind?</em></h2>
-          <p class="connect-description">Let’s connect and explore what’s possible.</p>
+          <p class="eyebrow" data-i18n="contactEyebrow">A note to begin</p>
+          <h2 id="contact-title" data-i18n-html="contactTitle">Have a creative<br>project in <em>mind?</em></h2>
+          <p class="connect-description" data-i18n="contactDescription">Let’s connect and explore what’s possible.</p>
           <div class="connect-actions">
-            <a class="button button-light" href="https://www.facebook.com/smkamrulhassanrakib" target="_blank" rel="noopener noreferrer">Contact on Facebook <span aria-hidden="true">↗</span></a>
-            <a class="connect-link" href="https://www.behance.net/kamrulhassanrakib" target="_blank" rel="noopener noreferrer">Explore Behance <span aria-hidden="true">↗</span></a>
-            <a class="connect-link" href="https://bd.linkedin.com/in/kamrul-hassan-rakib" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
+            <a class="button button-light" href="https://www.facebook.com/smkamrulhassanrakib" target="_blank" rel="noopener noreferrer"><span data-i18n="contactFacebook">Contact on Facebook</span> <span aria-hidden="true">↗</span></a>
+            <a class="connect-link" href="https://www.behance.net/kamrulhassanrakib" target="_blank" rel="noopener noreferrer"><span data-i18n="exploreBehance">Explore Behance</span> <span aria-hidden="true">↗</span></a>
+            <a class="connect-link" href="https://bd.linkedin.com/in/kamrul-hassan-rakib" target="_blank" rel="noopener noreferrer"><span data-i18n="connectLinkedIn">Connect on LinkedIn</span> <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </section>
@@ -156,15 +187,15 @@
     <footer class="site-footer section-shell">
       <div class="footer-top">
         <a class="footer-brand" href="#top">Kamrul Hassan<br><em>Rakib.</em></a>
-        <div class="footer-details"><p>Graphic designer &amp; branding specialist</p><p>Dhaka, Bangladesh</p></div>
-        <div class="footer-socials" aria-label="Social profiles">
+        <div class="footer-details"><p data-i18n="footerRole">Graphic designer &amp; branding specialist</p><p>Dhaka, Bangladesh</p></div>
+        <div class="footer-socials" aria-label="Social profiles" data-i18n-aria="socialProfiles">
           <a href="https://www.behance.net/kamrulhassanrakib" target="_blank" rel="noopener noreferrer">Behance <span aria-hidden="true">↗</span></a>
           <a href="https://www.facebook.com/smkamrulhassanrakib" target="_blank" rel="noopener noreferrer">Facebook <span aria-hidden="true">↗</span></a>
           <a href="https://bd.linkedin.com/in/kamrul-hassan-rakib" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
         </div>
       </div>
-      <div class="footer-bottom"><span>© <span id="current-year">2026</span> Kamrul Hassan Rakib</span><span>Designed with intention <b aria-hidden="true">✳</b></span><a href="#top">Back to top ↑</a></div>
+      <div class="footer-bottom"><span>© <span id="current-year">2026</span> Kamrul Hassan Rakib</span><span><span data-i18n="footerSlogan">Designed with intention</span> <b aria-hidden="true">✳</b></span><a href="#top" data-i18n="backToTop">Back to top ↑</a></div>
     </footer>
-    <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+    <button class="back-to-top" type="button" aria-label="Back to top" data-i18n-aria="backToTopLabel">↑</button>
   </body>
 </html>

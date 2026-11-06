@@ -1,3 +1,78 @@
+const messagesByLanguage = window.portfolioTranslations.messages;
+const languageSelector = document.querySelector("#language-selector");
+const themeToggle = document.querySelector("#theme-toggle");
+const themeColorMeta = document.querySelector("#theme-color-meta");
+const languageCodes = {
+  en: "en", bn: "bn", "zh-CN": "zh-CN", "zh-TW": "zh-TW", hi: "hi",
+  ar: "ar", es: "es", fr: "fr", ja: "ja", pt: "pt"
+};
+let currentLanguage = "en";
+let currentCategory = "all";
+
+function readPreference(key, allowedValues, fallback) {
+  try {
+    const savedValue = localStorage.getItem(key);
+    return allowedValues.includes(savedValue) ? savedValue : fallback;
+  } catch (error) {
+    console.error(`Unable to read the ${key} preference.`, error);
+    return fallback;
+  }
+}
+
+function savePreference(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch (error) {
+    console.error(`Unable to save the ${key} preference.`, error);
+  }
+}
+
+function setTheme(theme, persist = true) {
+  document.documentElement.dataset.theme = theme;
+  themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
+  themeToggle.setAttribute("aria-label", messagesByLanguage[currentLanguage][theme === "dark" ? "themeToDark" : "themeToLight"]);
+  if (themeColorMeta) themeColorMeta.content = theme === "dark" ? "#171512" : "#f3eee5";
+  if (persist) savePreference("rakib-info-theme", theme);
+}
+
+function applyLanguage(language, persist = true) {
+  currentLanguage = language;
+  const messages = messagesByLanguage[language];
+  document.documentElement.lang = languageCodes[language];
+  document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
+  document.title = messages.pageTitle;
+  document.querySelector('meta[name="description"]').content = messages.metaDescription;
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    element.textContent = messages[element.dataset.i18n];
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+    element.innerHTML = messages[element.dataset.i18nHtml];
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
+    element.setAttribute("aria-label", messages[element.dataset.i18nAria]);
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+    element.alt = messages[element.dataset.i18nAlt];
+  });
+  themeToggle.setAttribute("aria-label", messages[document.documentElement.dataset.theme === "dark" ? "themeToDark" : "themeToLight"]);
+  menuToggle.setAttribute("aria-label", navigation.classList.contains("is-open") ? messages.menuClose : messages.menuOpen);
+  if (persist) savePreference("rakib-info-language", language);
+  renderProjects(currentCategory);
+}
+
+const savedLanguage = readPreference("rakib-info-language", Object.keys(languageCodes), "en");
+const savedTheme = readPreference("rakib-info-theme", ["light", "dark"], document.documentElement.dataset.theme || "light");
+languageSelector.value = savedLanguage;
+setTheme(savedTheme, false);
+document.documentElement.classList.add("theme-ready");
+
+languageSelector.addEventListener("change", () => {
+  applyLanguage(languageSelector.value);
+});
+themeToggle.addEventListener("click", () => {
+  setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+});
+
 const projects = [
   { title: "Datom | Brand Identity Design & Logo Design", category: "brand", categoryLabel: "Brand identity", image: "assets/images/projects/datom.png", url: "https://www.behance.net/gallery/258086381/Datom-Brand-Identity-Design-Logo-Design", alt: "Datom brand identity project cover" },
   { title: "Enzo | Logo & Visual Identity Design", category: "brand", categoryLabel: "Brand identity", image: "assets/images/projects/enzo.jpg", url: "https://www.behance.net/gallery/257724461/Enzo-Logo-Visual-Identity-Design", alt: "Enzo visual identity project cover" },
@@ -46,7 +121,7 @@ function createProjectCard(project, index) {
   link.href = project.url;
   link.target = "_blank";
   link.rel = "noopener noreferrer";
-  link.setAttribute("aria-label", `${project.title} — open on Behance`);
+  link.setAttribute("aria-label", messagesByLanguage[currentLanguage].projectLinkLabel.replace("{title}", project.title));
 
   const visual = document.createElement("div");
   visual.className = `project-visual project-visual-${project.category}`;
@@ -77,7 +152,12 @@ function createProjectCard(project, index) {
   info.className = "project-info";
   const category = document.createElement("span");
   category.className = "project-category";
-  category.textContent = project.categoryLabel;
+  const categoryMessageKey = {
+    brand: "categoryBrand",
+    packaging: "categoryPackaging",
+    other: "categoryOther"
+  }[project.category];
+  category.textContent = messagesByLanguage[currentLanguage][categoryMessageKey];
   const title = document.createElement("h3");
   title.textContent = project.title;
   const arrow = document.createElement("span");
@@ -91,6 +171,7 @@ function createProjectCard(project, index) {
 }
 
 function renderProjects(category = "all") {
+  currentCategory = category;
   const visibleProjects = projects.filter((project) => category === "all" || project.category === category);
   projectGrid.replaceChildren(...visibleProjects.map(createProjectCard));
   visibleCount.textContent = String(visibleProjects.length);
@@ -110,7 +191,7 @@ filterButtons.forEach((button) => {
 
 function closeNavigation() {
   menuToggle.setAttribute("aria-expanded", "false");
-  menuToggle.setAttribute("aria-label", "Open navigation");
+  menuToggle.setAttribute("aria-label", messagesByLanguage[currentLanguage].menuOpen);
   navigation.classList.remove("is-open");
   document.body.classList.remove("menu-open");
 }
@@ -118,7 +199,7 @@ function closeNavigation() {
 menuToggle.addEventListener("click", () => {
   const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
   menuToggle.setAttribute("aria-expanded", String(!isOpen));
-  menuToggle.setAttribute("aria-label", isOpen ? "Open navigation" : "Close navigation");
+  menuToggle.setAttribute("aria-label", messagesByLanguage[currentLanguage][isOpen ? "menuOpen" : "menuClose"]);
   navigation.classList.toggle("is-open", !isOpen);
   document.body.classList.toggle("menu-open", !isOpen);
 });
@@ -174,4 +255,4 @@ backToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 
-renderProjects();
+applyLanguage(savedLanguage, false);

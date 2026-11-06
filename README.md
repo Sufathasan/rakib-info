@@ -6,6 +6,10 @@
 
 A responsive editorial portfolio for graphic designer and branding specialist Kamrul Hassan Rakib. Built as a static website with HTML, CSS, and vanilla JavaScript; there is no build step or package dependency.
 
+## Display and languages
+
+The site includes a persistent light/dark theme switch and an in-page language selector for English, Bengali, Simplified Chinese, Traditional Chinese, Hindi, Arabic, Spanish, French, Japanese, and Portuguese. Language and theme preferences are stored independently in the browser. Arabic uses right-to-left text direction; project names, links, and supplied professional details remain unchanged.
+
 ## Run locally
 
 Open `index.html` in a browser, or start a static server from this folder:
