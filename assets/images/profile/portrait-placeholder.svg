@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 980">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b7a58d"/>
+      <stop offset=".52" stop-color="#e0d4c2"/>
+      <stop offset="1" stop-color="#8f806b"/>
+    </linearGradient>
+    <pattern id="lines" width="38" height="38" patternUnits="userSpaceOnUse" patternTransform="rotate(32)">
+      <path d="M0 0v38" stroke="#29231d" stroke-opacity=".08" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="720" height="980" fill="url(#paper)"/>
+  <rect width="720" height="980" fill="url(#lines)"/>
+  <circle cx="360" cy="378" r="194" fill="none" stroke="#29231d" stroke-opacity=".35"/>
+  <circle cx="360" cy="378" r="174" fill="none" stroke="#f3eee5" stroke-opacity=".8"/>
+  <path d="M111 759c39-153 127-231 249-231s210 78 249 231" fill="none" stroke="#29231d" stroke-opacity=".6" stroke-width="2"/>
+  <path d="M242 360h236M360 242v236" stroke="#aa6046" stroke-opacity=".45"/>
+  <text x="360" y="852" fill="#29231d" font-family="Georgia,serif" font-size="29" font-style="italic" text-anchor="middle">Portrait unavailable</text>
+  <text x="360" y="885" fill="#62594f" font-family="monospace" font-size="12" text-anchor="middle" letter-spacing="3">ORIGINAL IMAGE REQUESTED</text>
+</svg>
